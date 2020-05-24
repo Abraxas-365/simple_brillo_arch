@@ -29,12 +29,16 @@ func main() {
 		case keylogger.EvKey:
 
 			if even.KeyString() == "F1" {
-				poder = poder - 200
+				if poder >= 200 {
+					poder = poder - 200
+				}
 				poders = strconv.Itoa(poder)
 				exec.Command("/bin/sh", "-c", "echo "+poders+" > /sys/class/backlight/intel_backlight/brightness").CombinedOutput()
 			}
 			if even.KeyString() == "F2" {
-				poder = poder + 200
+				if poder < 1800 {
+					poder = poder + 200
+				}
 				poders = strconv.Itoa(poder)
 				exec.Command("/bin/sh", "-c", "echo "+poders+" > /sys/class/backlight/intel_backlight/brightness").CombinedOutput()
 
